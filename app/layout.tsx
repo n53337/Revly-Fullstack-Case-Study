@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import AntPoviders from "@/providers/ant.provider";
 import '@ant-design/v5-patch-for-react-19';
+import { Providers } from "@/providers";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -29,9 +29,9 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <AntPoviders>
+        <Providers>
           {children}
-        </AntPoviders>
+        </Providers>
       </body>
     </html>
   );
