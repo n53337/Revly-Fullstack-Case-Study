@@ -6,7 +6,12 @@ export default function AntPoviders({ children }: { children: React.ReactNode })
   return <AntdRegistry>
     <ConfigProvider
       theme={{
-        algorithm: theme.darkAlgorithm
+        algorithm: theme.darkAlgorithm,
+        components: {
+          Layout: {
+            fontFamily: 'Inter, sans-serif',
+          },
+        },
       }} 
     >
     {children}
