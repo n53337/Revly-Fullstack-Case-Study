@@ -2,9 +2,9 @@
 import VendorsTable from "@/components/vendors/vendors-table";
 import { getVendors } from "@/queries/vendor.queries";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 
-export default function VendorsPage() {
+function VendorsPageContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
 
@@ -29,5 +29,13 @@ export default function VendorsPage() {
       <h1>Vendors</h1>
       <VendorsTable data={data} isLoading={isLoading || isFetching} />
     </div>
+  );
+}
+
+export default function VendorsPage() {
+  return (
+    <Suspense>
+      <VendorsPageContent />
+    </Suspense>
   );
 }

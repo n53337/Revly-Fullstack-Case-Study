@@ -2,9 +2,9 @@
 import UsersTable from "@/components/users/users-table";
 import { getUsers } from "@/queries/user.queries";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 
-export default function UsersPage() {
+function UsersPageContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
 
@@ -29,5 +29,13 @@ export default function UsersPage() {
       <h1>Users</h1>
       <UsersTable data={data} isLoading={isLoading || isFetching} />
     </div>
+  );
+}
+
+export default function UsersPage() {
+  return (
+    <Suspense>
+      <UsersPageContent />
+    </Suspense>
   );
 }

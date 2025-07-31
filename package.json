@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
-    "start": "next start",
+    "start": "npx drizzle-kit migrate && npm run seed && next start",
     "lint": "next lint",
     "seed": "tsx db/seed.ts"
   },
