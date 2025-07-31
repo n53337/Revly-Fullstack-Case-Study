@@ -14,12 +14,12 @@ export const getUsers = (page: number, limit: number) => {
   });
 };
 
-export const updateUserStatus = (id: number, status: boolean) => {
+export const updateUserStatus = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationKey: ["updateUserStatus", id, status],
-    mutationFn: async () => {
+    mutationKey: ["updateUserStatus"],
+    mutationFn: async ({ id, status }: { id: number; status: boolean }) => {
       const res = await api.put(`/users/${id}/status`, { status });
       return res.data as UserResponse;
     },
@@ -29,14 +29,26 @@ export const updateUserStatus = (id: number, status: boolean) => {
   });
 };
 
-export const assignVendors = (id: number, vendorIds: number[]) => {
+export const assignVendor = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationKey: ["assignVendors", id, vendorIds],
-    mutationFn: async () => {
+    mutationKey: ["assignVendors"],
+    mutationFn: async ({
+      id,
+      vendorId,
+      display_name,
+      is_enabled,
+    }: {
+      id: number;
+      vendorId: number;
+      display_name: string;
+      is_enabled: boolean;
+    }) => {
       const res = await api.put(`/users/${id}/vendors`, {
-        vendor_ids: vendorIds,
+        vendor_id: vendorId,
+        display_name: display_name,
+        is_enabled,
       });
       return res.data as UserResponse;
     },

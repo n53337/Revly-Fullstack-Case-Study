@@ -1,7 +1,7 @@
 import db from "@/db";
-import { usersTable } from "@/db/schema";
+import { users_vendors, usersTable } from "@/db/schema";
 import { getUsersValidator } from "@/validators/users.validator";
-import { count, desc } from "drizzle-orm";
+import { count, desc, eq } from "drizzle-orm";
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 
@@ -22,6 +22,7 @@ export async function GET(request: NextRequest) {
             id: true,
             display_name: true,
           },
+          where: eq(users_vendors.is_enabled, 1),
         },
       },
     });

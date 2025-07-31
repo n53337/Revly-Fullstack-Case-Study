@@ -10,5 +10,7 @@ export const updateUserStatusValidator = z.object({
 });
 
 export const assignVendorsValidator = z.object({
-  vendor_ids: z.array(z.number()).min(1),
+  vendor_id: z.number(),
+  display_name: z.string(),
+  is_enabled: z.boolean(),
 });
