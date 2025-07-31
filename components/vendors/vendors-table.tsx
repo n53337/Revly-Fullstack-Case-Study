@@ -23,14 +23,16 @@ const columns: TableColumnsType<Vendor> = [
   },
   {
     title: "Chain id",
-    dataIndex: "chain_id",
-    key: "chain_id",
+    dataIndex: "chain.id",
+    key: "chain.id",
+    render: (_, record) => record.chain.id,
     responsive: ["lg"],
   },
   {
     title: "Chain name",
-    dataIndex: "chain_name",
-    key: "chain_name",
+    dataIndex: "chain.name",
+    key: "chain.name",
+    render: (_, record) => record.chain.name,
   },
   {
     title: "Created at",

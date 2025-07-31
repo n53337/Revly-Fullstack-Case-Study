@@ -20,6 +20,7 @@ export async function GET(request: NextRequest) {
         chain: {
           columns: {
             name: true,
+            id: true,
           },
         },
       },
