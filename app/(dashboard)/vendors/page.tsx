@@ -24,13 +24,10 @@ export default function VendorsPage() {
     Number(limit)
   );
 
-  if (isLoading || isFetching) return <div>Loading...</div>;
-  if (isError) return <div>Error</div>;
-
   return (
     <div className="p-4 flex flex-col gap-4">
       <h1>Vendors</h1>
-      <VendorsTable data={data!} />
+      <VendorsTable data={data} isLoading={isLoading || isFetching} />
     </div>
   );
 }

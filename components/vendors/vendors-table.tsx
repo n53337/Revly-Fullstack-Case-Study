@@ -50,14 +50,18 @@ const columns: TableColumnsType<Vendor> = [
   },
 ];
 
-const VendorsTable: React.FC<{ data: VendorResponse }> = ({ data }) => (
+const VendorsTable: React.FC<{
+  data: VendorResponse | undefined;
+  isLoading: boolean;
+}> = ({ data, isLoading }) => (
   <Table<Vendor>
+    loading={isLoading}
     columns={columns}
-    dataSource={data.data}
+    dataSource={data?.data}
     pagination={{
-      pageSize: data.limit,
-      current: data.page,
-      total: data.total,
+      pageSize: data?.limit,
+      current: data?.page,
+      total: data?.total,
     }}
   />
 );
