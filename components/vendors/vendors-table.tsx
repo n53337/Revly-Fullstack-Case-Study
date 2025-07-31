@@ -1,44 +1,63 @@
-import React from 'react';
-import { Table } from 'antd';
-import type { TableColumnsType } from 'antd';
+import React from "react";
+import { Table } from "antd";
+import type { TableColumnsType } from "antd";
+import { Vendor, VendorResponse } from "@/types/vendor";
+import Link from "next/link";
 
-interface DataType {
-  key: React.Key;
-  name: string;
-  age: number;
-  address: string;
-}
-
-const columns: TableColumnsType<DataType> = [
+const columns: TableColumnsType<Vendor> = [
   {
-    title: 'Name (all screens)',
-    dataIndex: 'name',
-    key: 'name',
-    render: (text) => <a>{text}</a>,
+    title: "Name",
+    dataIndex: "name",
+    key: "name",
   },
   {
-    title: 'Age (medium screen or bigger)',
-    dataIndex: 'age',
-    key: 'age',
-    responsive: ['md'],
+    title: "Coordinates",
+    dataIndex: "longitude",
+    key: "longitude",
+    render: (_, record) => (
+      <Link
+        href={`https://www.google.com/maps/search/?api=1&query=${record.latitude},${record.longitude}`}
+        target="_blank"
+      >{`${record.longitude}, ${record.latitude}`}</Link>
+    ),
   },
   {
-    title: 'Address (large screen or bigger)',
-    dataIndex: 'address',
-    key: 'address',
-    responsive: ['lg'],
+    title: "Chain id",
+    dataIndex: "chain_id",
+    key: "chain_id",
+    responsive: ["lg"],
+  },
+  {
+    title: "Chain name",
+    dataIndex: "chain_name",
+    key: "chain_name",
+  },
+  {
+    title: "Created at",
+    dataIndex: "created_at",
+    key: "created_at",
+    responsive: ["lg"],
+    render: (text) => (
+      <span>
+        {Intl.DateTimeFormat("en-US", {
+          dateStyle: "short",
+          timeStyle: "short",
+        }).format(new Date(text))}
+      </span>
+    ),
   },
 ];
 
-const data: DataType[] = [
-  {
-    key: '1',
-    name: 'John Brown',
-    age: 32,
-    address: 'New York No. 1 Lake Park',
-  },
-];
-
-const VendorsTable: React.FC = () => <Table<DataType> columns={columns} dataSource={data} />;
+const VendorsTable: React.FC<{ data: VendorResponse }> = ({ data }) => (
+  <Table<Vendor>
+    columns={columns}
+    dataSource={data.data}
+    pagination={{
+      pageSize: data.limit,
+      current: data.page,
+      total: data.total,
+    }}
+  />
+);
 
 export default VendorsTable;

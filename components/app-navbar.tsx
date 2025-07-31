@@ -14,7 +14,7 @@ const items = [
     key: '1',
     icon: createElement(UserOutlined),
     label: 'Users',
-    href: '/',
+    href: '/users',
   },
   {
     key: '2',
