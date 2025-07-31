@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "next build",
-    "start": "npx drizzle-kit migrate && npm run seed && next start",
+    "build": "next build && npx drizzle-kit migrate && npm run seed ",
+    "start": "next start",
     "lint": "next lint",
     "seed": "tsx db/seed.ts"
   },
