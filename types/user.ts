@@ -5,7 +5,7 @@ export type User = {
   is_active: number;
   created_at: string;
   vendors: {
-    id: number;
+    vendor_id: number;
     display_name: string;
   }[];
 };

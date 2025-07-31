@@ -103,8 +103,8 @@ const UsersTable: React.FC<{
           {record.vendors.length > 0 ? (
             record.vendors.map((vendor) => (
               <Popover
-                key={vendor.id}
-                content={`Vendor ID: ${vendor.id}`}
+                key={vendor.vendor_id}
+                content={`Vendor ID: ${vendor.vendor_id}`}
                 trigger="hover"
               >
                 <Tag color="blue">{vendor.display_name}</Tag>

@@ -19,7 +19,7 @@ export async function GET(request: NextRequest) {
       with: {
         vendors: {
           columns: {
-            id: true,
+            vendor_id: true,
             display_name: true,
           },
           where: eq(users_vendors.is_enabled, 1),
