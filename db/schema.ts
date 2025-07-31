@@ -56,6 +56,21 @@ export const vendor_chain_relations = relations(vendorsTable, ({ one }) => ({
   }),
 }));
 
-export const user_vendor_relations = relations(users_vendors, ({ many }) => ({
-  usersToVendors: many(users_vendors),
+export const users_relations = relations(usersTable, ({ many }) => ({
+  vendors: many(users_vendors),
+}));
+
+export const vendors_relations = relations(vendorsTable, ({ many }) => ({
+  users: many(users_vendors),
+}));
+
+export const users_vendors_relations = relations(users_vendors, ({ one }) => ({
+  user: one(usersTable, {
+    fields: [users_vendors.user_id],
+    references: [usersTable.id],
+  }),
+  vendor: one(vendorsTable, {
+    fields: [users_vendors.vendor_id],
+    references: [vendorsTable.id],
+  }),
 }));
