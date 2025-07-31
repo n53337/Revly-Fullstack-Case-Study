@@ -1,8 +1,36 @@
 import React from "react";
-import { Table, Tag } from "antd";
+import { Button, Dropdown, Popover, Table, Tag } from "antd";
 import type { TableColumnsType } from "antd";
 import { User, UserResponse } from "@/types/user";
-import Link from "next/link";
+import {
+  EllipsisOutlined,
+  ApartmentOutlined,
+  UserDeleteOutlined,
+} from "@ant-design/icons";
+import type { MenuProps } from "antd";
+
+const dropdownItems: MenuProps["items"] = [
+  {
+    key: "assign.vendor",
+    label: (
+      <div className="flex items-center gap-2">
+        <ApartmentOutlined />
+        Assign vendors
+      </div>
+    ),
+    onClick: () => {},
+  },
+  {
+    key: "delete.user",
+    label: (
+      <div className="flex items-center gap-2">
+        <UserDeleteOutlined />
+        Disactivate user
+      </div>
+    ),
+    onClick: () => {},
+  },
+];
 
 const columns: TableColumnsType<User> = [
   {
@@ -41,11 +69,33 @@ const columns: TableColumnsType<User> = [
     dataIndex: "vendors",
     key: "vendors",
     render: (_, record) => (
-      <div>
-        {record.vendors.map((vendor) => (
-          <Tag key={vendor.id}>{vendor.display_name}</Tag>
-        ))}
+      <div className="flex flex-wrap gap-2">
+        {record.vendors.length > 0 ? (
+          record.vendors.map((vendor) => (
+            <Popover
+              key={vendor.id}
+              content={`Vendor ID: ${vendor.id}`}
+              trigger="hover"
+            >
+              <Tag color="blue">{vendor.display_name}</Tag>
+            </Popover>
+          ))
+        ) : (
+          <Tag color="warning">No vendors</Tag>
+        )}
       </div>
+    ),
+  },
+  {
+    title: "Actions",
+    dataIndex: "actions",
+    key: "actions",
+    render: (_, record) => (
+      <Dropdown menu={{ items: dropdownItems }} trigger={["click"]}>
+        <Button type="link">
+          <EllipsisOutlined />
+        </Button>
+      </Dropdown>
     ),
   },
 ];
