@@ -33,7 +33,7 @@ A very simple web app for managing vendors and users.
 
 - TypeScript
 - Next.js (with app router and api routes)
-- Drizzle ORM
+- Drizzle ORM (with Turso as the database)
 - Ant Design
 - React Query
 - Zod
