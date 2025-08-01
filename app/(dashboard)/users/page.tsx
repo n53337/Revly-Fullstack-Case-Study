@@ -25,7 +25,7 @@ function UsersPageContent() {
   );
 
   return (
-    <div className="p-4 flex flex-col gap-4">
+    <div className="p-4 flex flex-col gap-4 overflow-x-auto">
       <h1>Users</h1>
       <UsersTable data={data} isLoading={isLoading || isFetching} />
     </div>

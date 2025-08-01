@@ -25,7 +25,7 @@ function VendorsPageContent() {
   );
 
   return (
-    <div className="p-4 flex flex-col gap-4">
+    <div className="p-4 flex flex-col gap-4 overflow-x-auto">
       <h1>Vendors</h1>
       <VendorsTable data={data} isLoading={isLoading || isFetching} />
     </div>

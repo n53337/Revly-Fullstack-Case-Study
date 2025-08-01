@@ -98,6 +98,7 @@ const UsersTable: React.FC<{
       title: "List of vendors",
       dataIndex: "vendors",
       key: "vendors",
+      responsive: ["lg"],
       render: (_, record) => (
         <div className="flex flex-wrap gap-2">
           {record.vendors.length > 0 ? (
